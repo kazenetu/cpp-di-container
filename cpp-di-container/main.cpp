@@ -4,9 +4,21 @@
 #include "pch.h"
 #include <iostream>
 
+#include "Hoge.h"
+#include "DIContainer.h"
+
 int main()
 {
-    std::cout << "Hello World!\n"; 
+    //DIContainer::AddMap({"Hoge", Hoge::Create });
+    //DIContainer::AddMap("Hoge", IObject::Create);
+    DIContainer::AddMap("Hoge", Hoge::Create);
+    //DIContainer::AddMap("Hoge", IObject::Create);
+
+    //auto hoge = DIContainer::Create<Hoge>("Hoge");
+
+
+    // 一時停止
+    getchar();
 }
 
 // プログラムの実行: Ctrl + F5 または [デバッグ] > [デバッグなしで開始] メニュー

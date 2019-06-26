@@ -15,15 +15,15 @@ int main()
     //DIContainer::AddMap({"Hoge", Hoge::Create });
     //DIContainer::AddMap("Hoge", IObject::Create);
 
-    DIContainer::AddMap("Hoge", Hoge::CreateA);
-    DIContainer::AddMap("Fuga", Hoge::CreateA);
-    //DIContainer::AddMap("Hoge", CreateHoge);
+    DIContainer::AddMap("Hoge", Hoge::CreateB);
+    DIContainer::AddMapC("Hoge", Hoge::CreateC);
 
     //DIContainer::AddMap({ "Hoge", CreateHoge });
     //DIContainer::AddMap("Hoge", IObject::Create);
 
-    auto hoge = DIContainer::Create<Hoge>("Hoge");
-    //auto huga = DIContainer::Create<Hoge>("Fuga");
+    auto hoge = DIContainer::CreateC<Hoge>("Hoge");
+    //auto hoge = DIContainer::CreateB<Hoge>("Hoge");
+    hoge->Func();
 
 
     // 一時停止

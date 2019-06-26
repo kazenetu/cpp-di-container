@@ -11,7 +11,8 @@ public:
     static std::unique_ptr<IObject> Create() { return nullptr;}
 
 protected:
-    //virtual std::unique_ptr<IObject> createMain();
+    //virtual void created() = 0;
+    //virtual void deleted() = 0;
 };
 
 #endif //IOBJECT_H

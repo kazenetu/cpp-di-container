@@ -17,4 +17,11 @@
 //    auto result = std::make_unique<T>(DIContainer::diMaps[name]())();
 //    return (T)result;
 //}
+
 std::map<std::string, std::function<IObject*()>> DIContainer::diMaps = {};
+//std::map<std::string, std::function<IObject()>> DIContainer::diMaps = {};
+
+//std::map<std::string, std::function<std::unique_ptr<IObject>()>> DIContainer::diMaps = {};
+
+std::map<std::string, std::function<std::unique_ptr<IObject>()>> DIContainer::diMapsA{};
+std::map<std::string, std::function<std::shared_ptr<IObject>()>> DIContainer::diMapsC{};

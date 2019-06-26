@@ -15,6 +15,7 @@ public:
     static std::unique_ptr<IObject> Create()
     {
         auto result = std::make_unique<Hoge>();
+        result->str = "abc";
         return std::move(result);
     }
 
@@ -24,12 +25,31 @@ public:
         return result;
     }
 
-    Hoge() {
-        std::cout << "create Hoge\n" << std::endl;
+    static IObject* CreateB()
+    {
+        return &Hoge();
+    }
+
+    static std::shared_ptr<IObject> CreateC()
+    {
+        auto result = std::make_shared<Hoge>();
+        result->str = "abc";
+        return std::move(result);
+    }
+
+    void Func() {
+        std::cout << "Hoge!" << str.c_str() << std::endl;
+    }
+
+    Hoge() :str("aaaa") {
+        std::cout << "create Hoge:" << this << str.c_str() << std::endl;
     }
     ~Hoge() {
-        std::cout << "remove Hoge\n" << std::endl;
+        std::cout << "remove Hoge:" << this << str.c_str() << std::endl;
     }
+
+    std::string str;
+private:
 };
 
 IObject* CreateHoge()

@@ -3,6 +3,7 @@
 
 #include "pch.h"
 #include <iostream>
+#include <type_traits>
 
 #include "Hoge.h"
 #include "DIContainer.h"
@@ -13,10 +14,16 @@ int main()
 
     //DIContainer::AddMap({"Hoge", Hoge::Create });
     //DIContainer::AddMap("Hoge", IObject::Create);
-    DIContainer::AddMap("Hoge", Hoge::Create);
+
+    DIContainer::AddMap("Hoge", Hoge::CreateA);
+    DIContainer::AddMap("Fuga", Hoge::CreateA);
+    //DIContainer::AddMap("Hoge", CreateHoge);
+
+    //DIContainer::AddMap({ "Hoge", CreateHoge });
     //DIContainer::AddMap("Hoge", IObject::Create);
 
-    //auto hoge = DIContainer::Create<Hoge>("Hoge");
+    auto hoge = DIContainer::Create<Hoge>("Hoge");
+    //auto huga = DIContainer::Create<Hoge>("Fuga");
 
 
     // 一時停止

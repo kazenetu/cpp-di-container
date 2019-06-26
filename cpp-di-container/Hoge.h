@@ -5,56 +5,56 @@
 
 #include<memory>
 #include <iostream>
-#include <type_traits>
 
 #include "IObject.h"
 
+/*
+  サブクラス
+*/
 class Hoge:public IObject
 {
 public:
-    static std::unique_ptr<IObject> Create()
-    {
-        auto result = std::make_unique<Hoge>();
-        result->str = "abc";
-        return std::move(result);
-    }
 
-    static IObject* CreateA()
-    {
-        IObject* result = new Hoge();
-        return result;
-    }
-
-    static IObject* CreateB()
-    {
-        return &Hoge();
-    }
-
-    static std::shared_ptr<IObject> CreateC()
+    /*
+      インスタンス作成
+    */
+    static std::shared_ptr<IObject> Create()
     {
         auto result = std::make_shared<Hoge>();
+
+        // 生成時に動作確認用フィールドを書きかえる
         result->str = "abc";
+
         return std::move(result);
     }
 
-    void Func() {
+    /*
+      動作確認用メソッド
+    */
+    void Method() {
         std::cout << "Hoge!" << str.c_str() << std::endl;
     }
 
+    /*
+      コンストラクタ
+    */
     Hoge() :str("aaaa") {
         std::cout << "create Hoge:" << this << str.c_str() << std::endl;
     }
+
+    /*
+      デストラクタ
+    */
     ~Hoge() {
         std::cout << "remove Hoge:" << this << str.c_str() << std::endl;
     }
 
-    std::string str;
 private:
+
+    /*
+      動作確認用フィールド
+    */
+    std::string str;
 };
 
-IObject* CreateHoge()
-{
-    IObject* result = new Hoge();
-    return result;
-}
 #endif //HOGE_H

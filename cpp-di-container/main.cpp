@@ -3,7 +3,6 @@
 
 #include "pch.h"
 #include <iostream>
-#include <type_traits>
 
 #include "Hoge.h"
 #include "DIContainer.h"
@@ -12,18 +11,12 @@ int main()
 {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-    //DIContainer::AddMap({"Hoge", Hoge::Create });
-    //DIContainer::AddMap("Hoge", IObject::Create);
+    // コンテナ登録
+    DIContainer::AddMap("Hoge", Hoge::Create);
 
-    DIContainer::AddMap("Hoge", Hoge::CreateB);
-    DIContainer::AddMapC("Hoge", Hoge::CreateC);
-
-    //DIContainer::AddMap({ "Hoge", CreateHoge });
-    //DIContainer::AddMap("Hoge", IObject::Create);
-
-    auto hoge = DIContainer::CreateC<Hoge>("Hoge");
-    //auto hoge = DIContainer::CreateB<Hoge>("Hoge");
-    hoge->Func();
+    // インスタンス作成
+    auto hoge = DIContainer::Create<Hoge>("Hoge");
+    hoge->Method();
 
 
     // 一時停止

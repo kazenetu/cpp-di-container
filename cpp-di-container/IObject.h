@@ -5,14 +5,16 @@
 
 #include<memory>
 
+/*
+  スーパークラス
+*/
 class IObject
 {
 public:
+    /*
+      インスタンス作成
+    */
     static std::unique_ptr<IObject> Create() { return nullptr;}
-
-protected:
-    //virtual void created() = 0;
-    //virtual void deleted() = 0;
 };
 
 #endif //IOBJECT_H

@@ -1,27 +1,19 @@
 #include "pch.h"
 
-#include<memory>
+#include <typeinfo>
 
 #include "DIContainer.h"
 
-//void DIContainer::AddMap(std::string name, std::function<IObject> function)
-////void DIContainer::AddMap(std::string name, std::unique_ptr<IObject(*)()> function)
-//{
-//    //DIContainer::diMaps.emplace(name, function);
-//    diMaps[name] = function;
-//}
+/*
+  í«â¡
+*/
+void DIContainer::AddMap(std::string name, std::function<std::shared_ptr<IObject>()> function)
+{
+    // TODO í«â¡çœÇ›ämîF
 
-//template<typename T>
-//std::unique_ptr<T> DIContainer::Create(std::string name)
-//{
-//    auto result = std::make_unique<T>(DIContainer::diMaps[name]())();
-//    return (T)result;
-//}
+    // í«â¡
+    diMaps[name] = function;
+}
 
-std::map<std::string, std::function<IObject*()>> DIContainer::diMaps = {};
-//std::map<std::string, std::function<IObject()>> DIContainer::diMaps = {};
-
-//std::map<std::string, std::function<std::unique_ptr<IObject>()>> DIContainer::diMaps = {};
-
-std::map<std::string, std::function<std::unique_ptr<IObject>()>> DIContainer::diMapsA{};
-std::map<std::string, std::function<std::shared_ptr<IObject>()>> DIContainer::diMapsC{};
+// é¿ëÃâª
+std::map<std::string, std::function<std::shared_ptr<IObject>()>> DIContainer::diMaps{};

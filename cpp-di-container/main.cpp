@@ -9,6 +9,8 @@
 
 int main()
 {
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
     //DIContainer::AddMap({"Hoge", Hoge::Create });
     //DIContainer::AddMap("Hoge", IObject::Create);
     DIContainer::AddMap("Hoge", Hoge::Create);

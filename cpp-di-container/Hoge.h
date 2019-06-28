@@ -20,18 +20,16 @@ public:
     */
     static std::shared_ptr<IObject> Create()
     {
-        auto result = std::make_shared<Hoge>();
-
-        // 生成時に動作確認用フィールドを書きかえる
-        result->str = "abc";
-
-        return result;
+        return std::make_shared<Hoge>();
     }
 
     /*
       動作確認用メソッド
     */
     void Method() {
+        // メソッド呼び出し時に動作確認用フィールドを書きかえる
+        str = "abc";
+
         std::cout << "Hoge!" << str.c_str() << std::endl;
     }
 

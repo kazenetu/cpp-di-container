@@ -25,7 +25,7 @@ public:
         // 生成時に動作確認用フィールドを書きかえる
         result->str = "abc";
 
-        return std::move(result);
+        return result;
     }
 
     /*

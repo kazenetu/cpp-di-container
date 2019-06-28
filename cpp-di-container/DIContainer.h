@@ -16,6 +16,14 @@
 class DIContainer
 {
 public:
+    /*
+      ƒGƒ‰[—p—ñ‹“Œ^
+    */
+    enum DI_ERROR {
+        EXITS_NAME = 1,
+        NOT_EXITS_NAME,
+        UNKNOWN_ERROR,
+    };
 
     static void AddMap(std::string name, std::function<std::shared_ptr<IObject>()> function);
 

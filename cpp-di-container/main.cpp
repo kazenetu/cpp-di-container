@@ -11,12 +11,22 @@ int main()
 {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-    // コンテナ登録
-    DIContainer::AddMap("Hoge", Hoge::Create);
+    try {
+        // コンテナ登録
+        DIContainer::AddMap("Hoge", Hoge::Create);
+        DIContainer::AddMap("Fuga", Hoge::Create);
 
-    // インスタンス作成
-    auto hoge = DIContainer::Create<Hoge>("Hoge");
-    hoge->Method();
+        // インスタンス作成
+        auto hoge = DIContainer::Create<Hoge>("Hoge");
+        hoge->Method();
+
+        // 存在しない名前でインスタンス作成
+        auto fuga = DIContainer::Create<Hoge>("Fuga");
+    }
+    catch (DIContainer::DI_ERROR error) {
+        std::cout << "error:" << DIContainer::GetErrorName(error).c_str() << std::endl;
+    }
+    
 
 
     // 一時停止

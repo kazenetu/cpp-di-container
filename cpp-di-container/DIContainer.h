@@ -42,16 +42,19 @@ public:
         }
 
         // インスタンスを作成
-        auto instance = std::dynamic_pointer_cast<T>(DIContainer::diMaps[name]());
+        auto instance = DIContainer::diMaps[name]();
+        auto result = std::dynamic_pointer_cast<T>(instance);
 
         // インスタンスチェック
-        if (instance == nullptr) {
+        if (result == nullptr) {
             throw NOT_EXITS_NAME;
         }
-        
+
+        // 初期化メソッドを実行
+        instance->Initialize();
 
         // インスタンスを返す
-        return instance;
+        return result;
     }
 
     /*

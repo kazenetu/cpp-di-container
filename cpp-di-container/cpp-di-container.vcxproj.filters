@@ -36,5 +36,6 @@
     <ClInclude Include="Repository\IObject.h">
       <Filter>Repository</Filter>
     </ClInclude>
+    <ClInclude Include="Repository\DIContainerError.h" />
   </ItemGroup>
 </Project>

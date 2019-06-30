@@ -29,6 +29,7 @@
     <ClInclude Include="Domain\IFuga.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Repository\DIContainer.h" />
+    <ClInclude Include="Repository\DIContainerError.h" />
     <ClInclude Include="Repository\IObject.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

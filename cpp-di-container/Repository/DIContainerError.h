@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include "DIContainer.h"
 
 #ifndef DICONTAINER_ERROR_H
 #define DICONTAINER_ERROR_H
@@ -14,7 +15,7 @@ public:
     /*
       コンストラクタ
     */
-    DIContainerError(int errorCode, std::string name, std::string convertType)
+    DIContainerError(DIContainer::DI_ERROR errorCode, std::string name, std::string convertType)
         :errorCode(errorCode),name(name), convertType(convertType)
     {
     }
@@ -22,7 +23,7 @@ public:
     /*
       エラーコード取得
     */
-    int GetErrorCode() {
+    DIContainer::DI_ERROR GetErrorCode() {
         return errorCode;
     }
 
@@ -42,7 +43,7 @@ public:
     }
 
 private:
-    int errorCode;
+    DIContainer::DI_ERROR errorCode;
     std::string name;
     std::string convertType;
 };

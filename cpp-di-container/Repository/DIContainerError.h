@@ -6,6 +6,9 @@
 #include <iostream>
 #include "DIContainer.h"
 
+// 定数名を返す
+#define STR(var) #var 
+
 /*
   簡易DIコンテナ用エラークラス
 */
@@ -29,6 +32,41 @@ public:
         :errorCode(errorCode),name(name), convertType(convertType)
     {
     }
+
+    /*
+      エラー時の文字列を取得
+    */
+    std::string GetErrorString()
+    {
+        std::string result;
+
+        // エラーコード
+        switch (errorCode) {
+        case DIContainerError::EXITS_NAME:
+            result += STR(EXITS_NAME);
+
+        case DIContainerError::NOT_EXITS_NAME:
+            result += STR(NOT_EXITS_NAME);
+
+        case DIContainerError::CANNOT_CONVERT_TYPE:
+            result += STR(CANNOT_CONVERT_TYPE);
+
+        default:
+            result += STR(UNKNOWN_ERROR);
+
+        }
+
+        // 名称
+        result += " name[" + name + "]";
+
+        // 変換名
+        if (convertType != "") {
+            result += " convert miss[" + convertType + "]";
+        }
+
+        return result;
+    }
+
 
     /*
       エラーコード取得

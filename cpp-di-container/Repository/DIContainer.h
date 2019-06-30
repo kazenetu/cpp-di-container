@@ -51,11 +51,6 @@ public:
         return result;
     }
 
-    /*
-      エラー時の文字列を取得
-    */
-    static std::string GetErrorName(DIContainerError &errorCode);
-
 private:
     /*
       DIコンテナ情報

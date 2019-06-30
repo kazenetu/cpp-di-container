@@ -22,8 +22,8 @@ public:
         return std::make_shared<Fuga>();
     }
 
-    void Created() {
-
+    void Initialize() {
+        std::cout << "Initialize Fuga:" << this << std::endl;
     }
 
     void FugaMethod() {

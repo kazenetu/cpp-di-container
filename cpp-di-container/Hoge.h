@@ -40,8 +40,8 @@ public:
         std::cout << "create Hoge:" << this << str.c_str() << std::endl;
     }
 
-    void Created() {
-
+    void Initialize() {
+        std::cout << "Initialize Hoge:" << this << std::endl;
     }
 
     /*

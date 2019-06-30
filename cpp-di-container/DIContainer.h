@@ -51,7 +51,7 @@ public:
         
 
         // インスタンスを返す
-        return std::static_pointer_cast<T>(DIContainer::diMaps[name]());
+        return instance;
     }
 
     /*

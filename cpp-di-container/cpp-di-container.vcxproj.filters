@@ -37,5 +37,6 @@
       <Filter>Repository</Filter>
     </ClInclude>
     <ClInclude Include="Repository\DIContainerError.h" />
+    <ClInclude Include="Stub\StubFuga.h" />
   </ItemGroup>
 </Project>

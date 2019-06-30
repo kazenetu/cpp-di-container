@@ -10,6 +10,8 @@
 #include "Repository/DIContainer.h"
 #include "Repository/DIContainerError.h"
 
+#include "Stub/StubFuga.h"
+
 int main()
 {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -17,13 +19,14 @@ int main()
     try {
         // コンテナ登録
         DIContainer::AddMap("Hoge", Hoge::Create);
-        DIContainer::AddMap("Fuga", Fuga::Create);
+        //DIContainer::AddMap("Fuga", Fuga::Create);
+        DIContainer::AddMap("Fuga", StubFuga::Create); //Test用Fugaを登録
 
         // インスタンス作成
         auto hoge = DIContainer::Create<Hoge>("Hoge");
         hoge->Method();
 
-        // インスタンス作成
+        // インスタンス作成(テスト用
         auto fuga = DIContainer::Create<Fuga>("Fuga");
         fuga->FugaMethod();
 

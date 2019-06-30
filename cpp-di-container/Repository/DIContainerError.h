@@ -18,6 +18,7 @@ public:
     enum DI_ERROR {
         EXITS_NAME = 1,
         NOT_EXITS_NAME,
+        CANNOT_CONVERT_TYPE,
         UNKNOWN_ERROR,
     };
 

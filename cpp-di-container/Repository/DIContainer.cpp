@@ -31,6 +31,9 @@ std::string DIContainer::GetErrorName(DIContainerError::DI_ERROR errorCode)
     case DIContainerError::NOT_EXITS_NAME:
         return STR(NOT_EXITS_NAME);
 
+    case DIContainerError::CANNOT_CONVERT_TYPE:
+        return STR(CANNOT_CONVERT_TYPE);
+
     default:
         return STR(UNKNOWN_ERROR);
 

@@ -152,7 +152,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="DIContainer.h" />
+    <ClInclude Include="Fuga.h" />
     <ClInclude Include="Hoge.h" />
+    <ClInclude Include="IFuga.h" />
     <ClInclude Include="IObject.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>

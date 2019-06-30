@@ -31,7 +31,7 @@ int main()
         auto er = DIContainer::Create<Fuga>("Hoge");
     }
     catch (DIContainerError error) {
-        std::cout << "error:" << DIContainer::GetErrorName(error.GetErrorCode()).c_str() << std::endl;
+        std::cout << "error:" << DIContainer::GetErrorName(error).c_str() << std::endl;
     }
     
 

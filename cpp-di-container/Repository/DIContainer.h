@@ -54,7 +54,7 @@ public:
     /*
       ƒGƒ‰[‚Ì•¶š—ñ‚ğæ“¾
     */
-    static std::string GetErrorName(DIContainerError::DI_ERROR errorCode);
+    static std::string GetErrorName(DIContainerError &errorCode);
 
 private:
     /*

@@ -8,6 +8,9 @@
 
 #include "IObject.h"
 
+/*
+  Fugaクラス用インターフェースクラス
+*/
 class IFuga :public IObject
 {
     void virtual FugaMethod()=0;

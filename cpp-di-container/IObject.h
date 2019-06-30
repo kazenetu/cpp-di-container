@@ -6,7 +6,7 @@
 #include<memory>
 
 /*
-  スーパークラス
+  インターフェースクラス
 */
 class IObject
 {

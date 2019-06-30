@@ -9,7 +9,7 @@
 #include "IObject.h"
 
 /*
-  サブクラス
+  IObjectインターフェースの実装クラス
 */
 class Hoge:public IObject
 {

@@ -8,6 +8,9 @@
 
 #include "IFuga.h"
 
+/*
+  IFugaインターフェースの実装クラス
+*/
 class Fuga :public IFuga
 {
 public:

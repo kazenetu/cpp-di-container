@@ -13,9 +13,18 @@ class DIContainerError
 {
 public:
     /*
+      エラー用列挙型
+    */
+    enum DI_ERROR {
+        EXITS_NAME = 1,
+        NOT_EXITS_NAME,
+        UNKNOWN_ERROR,
+    };
+
+    /*
       コンストラクタ
     */
-    DIContainerError(DIContainer::DI_ERROR errorCode, std::string name, std::string convertType)
+    DIContainerError(DI_ERROR errorCode, std::string name, std::string convertType)
         :errorCode(errorCode),name(name), convertType(convertType)
     {
     }
@@ -23,7 +32,7 @@ public:
     /*
       エラーコード取得
     */
-    DIContainer::DI_ERROR GetErrorCode() {
+    DI_ERROR GetErrorCode() {
         return errorCode;
     }
 
@@ -43,7 +52,7 @@ public:
     }
 
 private:
-    DIContainer::DI_ERROR errorCode;
+    DI_ERROR errorCode;
     std::string name;
     std::string convertType;
 };

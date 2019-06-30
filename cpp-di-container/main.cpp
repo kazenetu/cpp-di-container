@@ -3,10 +3,12 @@
 
 #include "pch.h"
 #include <iostream>
+#include <memory>
 
 #include "Domain/Hoge.h"
 #include "Domain/Fuga.h"
 #include "Repository/DIContainer.h"
+#include "Repository/DIContainerError.h"
 
 int main()
 {
@@ -28,8 +30,8 @@ int main()
         // ダウンキャストできない組み合わせでインスタンス作成
         auto er = DIContainer::Create<Fuga>("Hoge");
     }
-    catch (DIContainer::DI_ERROR error) {
-        std::cout << "error:" << DIContainer::GetErrorName(error).c_str() << std::endl;
+    catch (DIContainerError error) {
+        std::cout << "error:" << DIContainer::GetErrorName(error.GetErrorCode()).c_str() << std::endl;
     }
     
 

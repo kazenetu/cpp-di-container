@@ -12,7 +12,7 @@ void DIContainer::AddMap(std::string name, std::function<std::shared_ptr<IObject
 {
     // 追加済み確認
     if (diMaps.find(name) != diMaps.end()) {
-        throw EXITS_NAME;
+        throw std::move(std::make_unique<DIContainerError>(DIContainerError::EXITS_NAME, name, ""));
     }
 
     // 追加
@@ -22,13 +22,13 @@ void DIContainer::AddMap(std::string name, std::function<std::shared_ptr<IObject
 /*
   エラー時の文字列を取得
 */
-std::string DIContainer::GetErrorName(DIContainer::DI_ERROR errorCode)
+std::string DIContainer::GetErrorName(DIContainerError::DI_ERROR errorCode)
 {
     switch (errorCode) {
-    case EXITS_NAME:
+    case DIContainerError::EXITS_NAME:
         return STR(EXITS_NAME);
 
-    case NOT_EXITS_NAME:
+    case DIContainerError::NOT_EXITS_NAME:
         return STR(NOT_EXITS_NAME);
 
     default:

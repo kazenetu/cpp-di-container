@@ -7,8 +7,10 @@
 #include<map>
 #include <functional>
 #include <iostream>
+#include <typeinfo>
 
 #include "IObject.h"
+#include "DIContainerError.h"
 
 /*
   簡易DIコンテナ
@@ -16,14 +18,6 @@
 class DIContainer
 {
 public:
-    /*
-      エラー用列挙型
-    */
-    enum DI_ERROR {
-        EXITS_NAME = 1, 
-        NOT_EXITS_NAME,
-        UNKNOWN_ERROR,
-    };
 
     /*
       追加
@@ -38,7 +32,7 @@ public:
     {
         // 存在確認
         if (diMaps.find(name) == diMaps.end()) {
-            throw NOT_EXITS_NAME;
+            throw std::move(std::make_unique<DIContainerError>(DIContainerError::NOT_EXITS_NAME,name, ""));
         }
 
         // インスタンスを作成
@@ -47,7 +41,7 @@ public:
 
         // インスタンスチェック
         if (result == nullptr) {
-            throw NOT_EXITS_NAME;
+            throw DIContainerError(DIContainerError::NOT_EXITS_NAME, name, typeid(T).name());
         }
 
         // 初期化メソッドを実行
@@ -60,7 +54,7 @@ public:
     /*
       エラー時の文字列を取得
     */
-    static std::string GetErrorName(DIContainer::DI_ERROR errorCode);
+    static std::string GetErrorName(DIContainerError::DI_ERROR errorCode);
 
 private:
     /*

@@ -5,6 +5,7 @@
 #include <iostream>
 
 #include "Hoge.h"
+#include "Fuga.h"
 #include "DIContainer.h"
 
 int main()
@@ -14,13 +15,18 @@ int main()
     try {
         // コンテナ登録
         DIContainer::AddMap("Hoge", Hoge::Create);
+        DIContainer::AddMap("Fuga", Fuga::Create);
 
         // インスタンス作成
         auto hoge = DIContainer::Create<Hoge>("Hoge");
         hoge->Method();
 
-        // 存在しない名前でインスタンス作成
-        auto fuga = DIContainer::Create<Hoge>("Fuga");
+        // インスタンス作成
+        auto fuga = DIContainer::Create<Fuga>("Fuga");
+        fuga->FugaMethod();
+
+        // ダウンキャストできない組み合わせでインスタンス作成
+        auto er = DIContainer::Create<Fuga>("Hoge");
     }
     catch (DIContainer::DI_ERROR error) {
         std::cout << "error:" << DIContainer::GetErrorName(error).c_str() << std::endl;

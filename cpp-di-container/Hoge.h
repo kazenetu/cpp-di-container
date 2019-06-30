@@ -40,6 +40,10 @@ public:
         std::cout << "create Hoge:" << this << str.c_str() << std::endl;
     }
 
+    void Created() {
+
+    }
+
     /*
       デストラクタ
     */

@@ -11,10 +11,7 @@
 class IObject
 {
 public:
-    /*
-      インスタンス作成
-    */
-    static std::unique_ptr<IObject> Create() { return nullptr;}
+    virtual void Created()=0;
 };
 
 #endif //IOBJECT_H

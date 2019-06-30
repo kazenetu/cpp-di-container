@@ -41,7 +41,16 @@ public:
             throw NOT_EXITS_NAME;
         }
 
-        // インスタンスを作成し、返す
+        // インスタンスを作成
+        auto instance = std::dynamic_pointer_cast<T>(DIContainer::diMaps[name]());
+
+        // インスタンスチェック
+        if (instance == nullptr) {
+            throw NOT_EXITS_NAME;
+        }
+        
+
+        // インスタンスを返す
         return std::static_pointer_cast<T>(DIContainer::diMaps[name]());
     }
 

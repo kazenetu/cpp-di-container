@@ -19,6 +19,10 @@ public:
         return std::make_shared<Fuga>();
     }
 
+    void Created() {
+
+    }
+
     void FugaMethod() {
         std::cout << "Fuga!" << std::endl;
     }

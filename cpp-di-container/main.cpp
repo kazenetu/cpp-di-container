@@ -4,9 +4,9 @@
 #include "pch.h"
 #include <iostream>
 
-#include "Hoge.h"
-#include "Fuga.h"
-#include "DIContainer.h"
+#include "Domain/Hoge.h"
+#include "Domain/Fuga.h"
+#include "Repository/DIContainer.h"
 
 int main()
 {

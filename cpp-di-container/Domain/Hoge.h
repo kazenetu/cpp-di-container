@@ -6,7 +6,7 @@
 #include<memory>
 #include <iostream>
 
-#include "IObject.h"
+#include "../Repository/IObject.h"
 
 /*
   IObjectインターフェースの実装クラス

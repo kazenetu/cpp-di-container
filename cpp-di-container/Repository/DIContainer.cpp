@@ -1,5 +1,3 @@
-#include "pch.h"
-
 #include <typeinfo>
 
 #include "DIContainer.h"

@@ -1,6 +1,6 @@
-#include <typeinfo>
-
 #include "DIContainer.h"
+
+#include <typeinfo>
 
 // ’è”–¼‚ğ•Ô‚·
 #define STR(var) #var 

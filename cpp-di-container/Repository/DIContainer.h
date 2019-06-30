@@ -1,14 +1,14 @@
 #pragma once
 
+#ifndef DICONTAINER_H
+#define DICONTAINER_H
+
 #include<memory>
 #include<map>
 #include <functional>
 #include <iostream>
 
 #include "IObject.h"
-
-#ifndef DICONTAINER_H
-#define DICONTAINER_H
 
 /*
   ŠÈˆÕDIƒRƒ“ƒeƒi

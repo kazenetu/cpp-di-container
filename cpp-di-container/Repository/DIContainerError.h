@@ -1,10 +1,10 @@
 #pragma once
 
-#include <iostream>
-#include "DIContainer.h"
-
 #ifndef DICONTAINER_ERROR_H
 #define DICONTAINER_ERROR_H
+
+#include <iostream>
+#include "DIContainer.h"
 
 /*
   簡易DIコンテナ用エラークラス

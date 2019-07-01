@@ -9,14 +9,14 @@
 #include "../Repository/IObject.h"
 
 /*
-  IObjectƒCƒ“ƒ^[ƒtƒF[ƒX‚ÌÀ‘•ƒNƒ‰ƒX
+  IObjectã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®å®Ÿè£…ã‚¯ãƒ©ã‚¹
 */
 class Hoge:public IObject
 {
 public:
 
     /*
-      ƒCƒ“ƒXƒ^ƒ“ƒXì¬
+      ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ä½œæˆ
     */
     static std::shared_ptr<IObject> Create()
     {
@@ -24,17 +24,17 @@ public:
     }
 
     /*
-      “®ìŠm”F—pƒƒ\ƒbƒh
+      å‹•ä½œç¢ºèªç”¨ãƒ¡ã‚½ãƒƒãƒ‰
     */
     void Method() {
-        // ƒƒ\ƒbƒhŒÄ‚Ño‚µ‚É“®ìŠm”F—pƒtƒB[ƒ‹ƒh‚ğ‘‚«‚©‚¦‚é
+        // ãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—æ™‚ã«å‹•ä½œç¢ºèªç”¨ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’æ›¸ãã‹ãˆã‚‹
         str = "abc";
 
         std::cout << "Hoge!" << str.c_str() << std::endl;
     }
 
     /*
-      ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+      ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
     */
     Hoge() :str("aaaa") {
         std::cout << "create Hoge:" << this << str.c_str() << std::endl;
@@ -45,7 +45,7 @@ public:
     }
 
     /*
-      ƒfƒXƒgƒ‰ƒNƒ^
+      ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
     */
     ~Hoge() {
         std::cout << "remove Hoge:" << this << str.c_str() << std::endl;
@@ -54,7 +54,7 @@ public:
 private:
 
     /*
-      “®ìŠm”F—pƒtƒB[ƒ‹ƒh
+      å‹•ä½œç¢ºèªç”¨ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
     */
     std::string str;
 };

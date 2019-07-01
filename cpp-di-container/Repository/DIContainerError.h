@@ -6,17 +6,17 @@
 #include <iostream>
 #include "DIContainer.h"
 
-// ’è”–¼‚ğ•Ô‚·
+// å®šæ•°åã‚’è¿”ã™
 #define STR(var) #var 
 
 /*
-  ŠÈˆÕDIƒRƒ“ƒeƒi—pƒGƒ‰[ƒNƒ‰ƒX
+  ç°¡æ˜“DIã‚³ãƒ³ãƒ†ãƒŠç”¨ã‚¨ãƒ©ãƒ¼ã‚¯ãƒ©ã‚¹
 */
 class DIContainerError
 {
 public:
     /*
-      ƒGƒ‰[—p—ñ‹“Œ^
+      ã‚¨ãƒ©ãƒ¼ç”¨åˆ—æŒ™å‹
     */
     enum DI_ERROR {
         EXITS_NAME = 1,
@@ -26,7 +26,7 @@ public:
     };
 
     /*
-      ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+      ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
     */
     DIContainerError(DI_ERROR errorCode, std::string name, std::string convertType)
         :errorCode(errorCode),name(name), convertType(convertType)
@@ -34,13 +34,13 @@ public:
     }
 
     /*
-      ƒGƒ‰[‚Ì•¶š—ñ‚ğæ“¾
+      ã‚¨ãƒ©ãƒ¼æ™‚ã®æ–‡å­—åˆ—ã‚’å–å¾—
     */
     std::string GetErrorString()
     {
         std::string result;
 
-        // ƒGƒ‰[ƒR[ƒh
+        // ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
         switch (errorCode) {
         case DIContainerError::EXITS_NAME:
             result += STR(EXITS_NAME);
@@ -56,10 +56,10 @@ public:
 
         }
 
-        // –¼Ì
+        // åç§°
         result += " name[" + name + "]";
 
-        // •ÏŠ·–¼
+        // å¤‰æ›å
         if (convertType != "") {
             result += " convert miss[" + convertType + "]";
         }
@@ -69,22 +69,22 @@ public:
 
 
     /*
-      ƒGƒ‰[ƒR[ƒhæ“¾
+      ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰å–å¾—
     */
     DI_ERROR GetErrorCode() {
         return errorCode;
     }
 
     /*
-      w’è‚µ‚½–¼‘O‚ğæ“¾
+      æŒ‡å®šã—ãŸåå‰ã‚’å–å¾—
     */
     std::string GetName() {
         return name;
     }
 
     /*
-      ƒ_ƒEƒ“ƒLƒƒƒXƒg–¼‚ğæ“¾
-      Createƒƒ\ƒbƒh–¼‚Ì‚İİ’è
+      ãƒ€ã‚¦ãƒ³ã‚­ãƒ£ã‚¹ãƒˆåã‚’å–å¾—
+      Createãƒ¡ã‚½ãƒƒãƒ‰åã®ã¿è¨­å®š
     */
     std::string GetConvertType() {
         return convertType;

@@ -4,18 +4,18 @@
 
 
 /*
-  ’Ç‰Á
+  è¿½åŠ 
 */
 void DIContainer::AddMap(std::string name, std::function<std::shared_ptr<IObject>()> function)
 {
-    // ’Ç‰ÁÏ‚İŠm”F
+    // è¿½åŠ æ¸ˆã¿ç¢ºèª
     if (diMaps.find(name) != diMaps.end()) {
         throw std::move(std::make_unique<DIContainerError>(DIContainerError::EXITS_NAME, name, ""));
     }
 
-    // ’Ç‰Á
+    // è¿½åŠ 
     diMaps[name] = function;
 }
 
-// À‘Ì‰»
+// å®Ÿä½“åŒ–
 std::map<std::string, std::function<std::shared_ptr<IObject>()>> DIContainer::diMaps{};

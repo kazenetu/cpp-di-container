@@ -13,47 +13,47 @@
 #include "DIContainerError.h"
 
 /*
-  ŠÈˆÕDIƒRƒ“ƒeƒi
+  ç°¡æ˜“DIã‚³ãƒ³ãƒ†ãƒŠ
 */
 class DIContainer
 {
 public:
 
     /*
-      ’Ç‰Á
+      è¿½åŠ 
     */
     static void AddMap(std::string name, std::function<std::shared_ptr<IObject>()> function);
 
     /*
-      ƒCƒ“ƒXƒ^ƒ“ƒX‚ğ•Ô‚·
+      ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’è¿”ã™
     */
     template<class T>
     static std::shared_ptr<T> Create(std::string name)
     {
-        // ‘¶İŠm”F
+        // å­˜åœ¨ç¢ºèª
         if (diMaps.find(name) == diMaps.end()) {
             throw std::move(std::make_unique<DIContainerError>(DIContainerError::NOT_EXITS_NAME,name, ""));
         }
 
-        // ƒCƒ“ƒXƒ^ƒ“ƒX‚ğì¬
+        // ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ä½œæˆ
         auto instance = DIContainer::diMaps[name]();
         auto result = std::dynamic_pointer_cast<T>(instance);
 
-        // ƒCƒ“ƒXƒ^ƒ“ƒXƒ`ƒFƒbƒN
+        // ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
         if (result == nullptr) {
             throw DIContainerError(DIContainerError::CANNOT_CONVERT_TYPE, name, typeid(T).name());
         }
 
-        // ‰Šú‰»ƒƒ\ƒbƒh‚ğÀs
+        // åˆæœŸåŒ–ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å®Ÿè¡Œ
         instance->Initialize();
 
-        // ƒCƒ“ƒXƒ^ƒ“ƒX‚ğ•Ô‚·
+        // ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’è¿”ã™
         return result;
     }
 
 private:
     /*
-      DIƒRƒ“ƒeƒiî•ñ
+      DIã‚³ãƒ³ãƒ†ãƒŠæƒ…å ±
     */
     static std::map<std::string, std::function<std::shared_ptr<IObject>()>> diMaps;
 };

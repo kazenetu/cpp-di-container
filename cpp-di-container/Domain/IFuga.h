@@ -9,7 +9,7 @@
 #include "../Repository/IObject.h"
 
 /*
-  Fugaクラス用インターフェースクラス
+  Fuga繧ｯ繝ｩ繧ｹ逕ｨ繧､繝ｳ繧ｿ繝ｼ繝輔ぉ繝ｼ繧ｹ繧ｯ繝ｩ繧ｹ
 */
 class IFuga :public IObject
 {

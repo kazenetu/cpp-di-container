@@ -9,13 +9,13 @@
 #include "IFuga.h"
 
 /*
-  IFugaƒCƒ“ƒ^[ƒtƒF[ƒX‚ÌŽÀ‘•ƒNƒ‰ƒX
+  IFugaã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®å®Ÿè£…ã‚¯ãƒ©ã‚¹
 */
 class Fuga :public IFuga
 {
 public:
     /*
-      ƒCƒ“ƒXƒ^ƒ“ƒXì¬
+      ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ä½œæˆ
     */
     static std::shared_ptr<IObject> Create()
     {

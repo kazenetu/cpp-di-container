@@ -6,7 +6,7 @@
 #include<memory>
 
 /*
-  インターフェースクラス
+  繧､繝ｳ繧ｿ繝ｼ繝輔ぉ繝ｼ繧ｹ繧ｯ繝ｩ繧ｹ
 */
 class IObject
 {

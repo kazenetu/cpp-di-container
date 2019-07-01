@@ -18,20 +18,20 @@ int main()
 
     try {
         // コンテナ登録
-        DIContainer::AddMap("Hoge", Hoge::Create);
-        //DIContainer::AddMap("Fuga", Fuga::Create);
-        DIContainer::AddMap("Fuga", StubFuga::Create); //Test用Fugaを登録
+        DIContainer::AddMap("Hoge", Hoge::GetInfoName);
+        //DIContainer::AddMap("Fuga", Fuga::GetInfoName);
+        DIContainer::AddMap("Fuga", StubFuga::GetInfoName); //Test用Fugaを登録
 
         // インスタンス作成
-        auto hoge = DIContainer::Create<Hoge>("Hoge");
-        hoge->Method();
+        auto hoge = DIContainer::Create<Hoge>("Hoge",1);
+        //hoge->Method();
 
-        // インスタンス作成(テスト用
+        //// インスタンス作成(テスト用
         auto fuga = DIContainer::Create<Fuga>("Fuga");
-        fuga->FugaMethod();
+        //fuga->FugaMethod();
 
-        // ダウンキャストできない組み合わせでインスタンス作成
-        auto er = DIContainer::Create<Fuga>("Hoge");
+        //// ダウンキャストできない組み合わせでインスタンス作成
+        //auto er = DIContainer::Create<Fuga>("Hoge");
     }
     catch (DIContainerError error) {
         std::cout << "error:" << error.GetErrorString().c_str() << std::endl;

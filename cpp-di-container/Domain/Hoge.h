@@ -5,6 +5,7 @@
 
 #include<memory>
 #include <iostream>
+#include <typeinfo>
 
 #include "../Repository/IObject.h"
 
@@ -16,11 +17,11 @@ class Hoge:public IObject
 public:
 
     /*
-      インスタンス作成
+      クラス名を返す
     */
-    static std::shared_ptr<IObject> Create()
+    static std::string GetInfoName()
     {
-        return std::make_shared<Hoge>();
+        return typeid(Hoge).name();
     }
 
     /*
@@ -38,6 +39,10 @@ public:
     */
     Hoge() :str("aaaa") {
         std::cout << "create Hoge:" << this << str.c_str() << std::endl;
+    }
+
+    Hoge(int i) :str("aaaa") {
+        std::cout << "create Hoge_i:" << this << str.c_str() << std::endl;
     }
 
     void Initialize() {

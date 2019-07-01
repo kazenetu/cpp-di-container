@@ -23,13 +23,13 @@ public:
     /*
       追加
     */
-    static void AddMap(std::string name, std::function<std::shared_ptr<IObject>()> function);
+    static void AddMap(std::string name, std::function<std::string()> function);
 
     /*
       インスタンスを返す
     */
-    template<class T>
-    static std::shared_ptr<T> Create(std::string name)
+    template<class T,class... Args>
+    static std::shared_ptr<T> Create(std::string name, Args... args)
     {
         // 排他制御を実施
         static std::recursive_mutex mutex_;
@@ -40,17 +40,24 @@ public:
             throw std::move(std::make_unique<DIContainerError>(DIContainerError::NOT_EXITS_NAME,name, ""));
         }
 
-        // インスタンスを作成
-        auto instance = DIContainer::diMaps[name]();
-        auto result = std::dynamic_pointer_cast<T>(instance);
+        // クラス名を取得
+        auto className = DIContainer::diMaps[name]();
+        auto convertTypeName = typeid(T).name();
+
+        // クラス名の一致確認
+        if (className != convertTypeName) {
+            throw DIContainerError(DIContainerError::CANNOT_CONVERT_TYPE, name, convertTypeName);
+        }
+
+        auto result = std::make_shared<T>(args...);
 
         // インスタンスチェック
         if (result == nullptr) {
-            throw DIContainerError(DIContainerError::CANNOT_CONVERT_TYPE, name, typeid(T).name());
+            throw DIContainerError(DIContainerError::CANNOT_CONVERT_TYPE, name, convertTypeName);
         }
 
         // 初期化メソッドを実行
-        instance->Initialize();
+        result->Initialize();
 
         // インスタンスを返す
         return result;
@@ -60,7 +67,7 @@ private:
     /*
       DIコンテナ情報
     */
-    static std::map<std::string, std::function<std::shared_ptr<IObject>()>> diMaps;
+    static std::map<std::string, std::function<std::string()>> diMaps;
 
     /*
 　　  排他制御用mutexインスタンス

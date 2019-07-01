@@ -11,6 +11,9 @@
     <Filter Include="Repository">
       <UniqueIdentifier>{b69f9d78-414d-476e-9a39-1e251b91ab4a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Stub">
+      <UniqueIdentifier>{236a00ae-8008-4b06-a2ee-c010ab34f851}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -37,6 +40,8 @@
       <Filter>Repository</Filter>
     </ClInclude>
     <ClInclude Include="Repository\DIContainerError.h" />
-    <ClInclude Include="Stub\StubFuga.h" />
+    <ClInclude Include="Stub\StubFuga.h">
+      <Filter>Stub</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -63,11 +63,10 @@ auto fuga = DIContainer::Create<Fuga>("Fuga");
 |インスタンス作成時 |クラス名未登録         |DIContainerError::DI_ERROR::NOT_EXITS_NAME      |
 |インスタンス作成時 |指定クラスへの変換不可  |DIContainerError::DI_ERROR::CANNOT_CONVERT_TYPE |
 
-### 例外インスタンス
-DIContainerError  
+### 例外インスタンス(DIContainerError)
 |メソッド名|戻り値|詳細|
 |:-----------------|:----------------------------|:-------------------------------------|
 |GetErrorString()  |std::string                  | エラー時の文字列を取得                 |
 |GetErrorCode()    |DIContainerError::DI_ERROR   |エラーコード取得                       |
 |GetName()         |std::string                  | クラス名取得                          |
-|GetConvertType()  |std::string                  | ダウンキャスト名を取得<br>(インスタンス作成時のみ設定)  |
+|GetConvertType()  |std::string                  | ダウンキャスト名を取得(インスタンス作成時のみ設定)  |

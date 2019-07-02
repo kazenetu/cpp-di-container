@@ -18,9 +18,9 @@ int main()
 
     try {
         // コンテナ登録
-        DIContainer::AddMap("Hoge", Hoge::GetInfoName);
-        //DIContainer::AddMap("Fuga", Fuga::GetInfoName);
-        DIContainer::AddMap("Fuga", StubFuga::GetInfoName); //Test用Fugaを登録
+        DIContainer::AddMap("Hoge", Hoge::Create);
+        //DIContainer::AddMap("Fuga", Fuga::Create);
+        DIContainer::AddMap("Fuga", StubFuga::Create); //Test用Fugaを登録
 
         // インスタンス作成
         auto hoge = DIContainer::Create<Hoge>("Hoge",1);

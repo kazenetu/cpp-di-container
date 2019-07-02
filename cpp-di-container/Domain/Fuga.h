@@ -14,13 +14,12 @@
 class Fuga :public IFuga
 {
 public:
-
     /*
-      クラス名を返す
+      インスタンス作成
     */
-    static std::string GetInfoName()
+    static std::shared_ptr<IObject> Create()
     {
-        return typeid(Fuga).name();
+        return std::make_shared<Fuga>();
     }
 
     void Initialize() {

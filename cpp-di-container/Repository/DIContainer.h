@@ -23,12 +23,12 @@ public:
     /*
       追加
     */
-    static void AddMap(std::string name, std::function<std::string()> function);
+    static void AddMap(std::string name, std::function<std::shared_ptr<IObject>()> function);
 
     /*
       インスタンスを返す
     */
-    template<class T,class... Args>
+    template<class T, class... Args>
     static std::shared_ptr<T> Create(std::string name, Args... args)
     {
         // 排他制御を実施
@@ -40,24 +40,17 @@ public:
             throw std::move(std::make_unique<DIContainerError>(DIContainerError::NOT_EXITS_NAME,name, ""));
         }
 
-        // クラス名を取得
-        auto className = DIContainer::diMaps[name]();
-        auto convertTypeName = typeid(T).name();
-
-        // クラス名の一致確認
-        if (className != convertTypeName) {
-            throw DIContainerError(DIContainerError::CANNOT_CONVERT_TYPE, name, convertTypeName);
-        }
-
-        auto result = std::make_shared<T>(args...);
+        // インスタンスを作成
+        auto instance = DIContainer::diMaps[name]();
+        auto result = std::dynamic_pointer_cast<T>(instance);
 
         // インスタンスチェック
         if (result == nullptr) {
-            throw DIContainerError(DIContainerError::CANNOT_CONVERT_TYPE, name, convertTypeName);
+            throw DIContainerError(DIContainerError::CANNOT_CONVERT_TYPE, name, typeid(T).name());
         }
 
         // 初期化メソッドを実行
-        result->Initialize();
+        result->Initialize(args...);
 
         // インスタンスを返す
         return result;
@@ -67,7 +60,7 @@ private:
     /*
       DIコンテナ情報
     */
-    static std::map<std::string, std::function<std::string()>> diMaps;
+    static std::map<std::string, std::function<std::shared_ptr<IObject>()>> diMaps;
 
     /*
 　　  排他制御用mutexインスタンス

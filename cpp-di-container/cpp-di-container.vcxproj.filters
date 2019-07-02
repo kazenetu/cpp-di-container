@@ -39,9 +39,11 @@
     <ClInclude Include="Repository\IObject.h">
       <Filter>Repository</Filter>
     </ClInclude>
-    <ClInclude Include="Repository\DIContainerError.h" />
     <ClInclude Include="Stub\StubFuga.h">
       <Filter>Stub</Filter>
+    </ClInclude>
+    <ClInclude Include="Repository\DIContainerError.h">
+      <Filter>Repository</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -6,16 +6,16 @@
 /*
   追加
 */
-void DIContainer::AddMap(std::string name, std::function<std::shared_ptr<IObject>()> function)
+void DIContainer::Register(std::string name, std::function<std::shared_ptr<IObject>()> function)
 {
     // 追加済み確認
-    if (diMaps.find(name) != diMaps.end()) {
+    if (container.find(name) != container.end()) {
         throw DIContainerError::Create(DIContainerError::EXITS_NAME, name, "");
     }
 
     // 追加
-    diMaps[name] = function;
+    container[name] = function;
 }
 
 // 実体化
-std::map<std::string, std::function<std::shared_ptr<IObject>()>> DIContainer::diMaps{};
+std::map<std::string, std::function<std::shared_ptr<IObject>()>> DIContainer::container{};

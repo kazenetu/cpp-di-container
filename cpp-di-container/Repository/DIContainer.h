@@ -23,7 +23,7 @@ public:
     /*
       追加
     */
-    static void AddMap(std::string name, std::function<std::shared_ptr<IObject>()> function);
+    static void Register(std::string name, std::function<std::shared_ptr<IObject>()> function);
 
     /*
       インスタンスを返す
@@ -36,12 +36,12 @@ public:
         std::unique_lock<std::recursive_mutex> lock(mutex_);
 
         // 存在確認
-        if (diMaps.find(name) == diMaps.end()) {
+        if (container.find(name) == container.end()) {
             throw DIContainerError::Create(DIContainerError::NOT_EXITS_NAME,name, "");
         }
 
         // インスタンスを作成
-        auto instance = DIContainer::diMaps[name]();
+        auto instance = DIContainer::container[name]();
         auto result = std::dynamic_pointer_cast<T>(instance);
 
         // インスタンスチェック
@@ -60,7 +60,7 @@ private:
     /*
       DIコンテナ情報
     */
-    static std::map<std::string, std::function<std::shared_ptr<IObject>()>> diMaps;
+    static std::map<std::string, std::function<std::shared_ptr<IObject>()>> container;
 
     /*
 　　  排他制御用mutexインスタンス

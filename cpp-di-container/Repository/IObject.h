@@ -11,7 +11,7 @@
 class IObject
 {
 public:
-    virtual void Initialize()=0;
+    virtual void Initialize() {};
 };
 
 #endif //IOBJECT_H

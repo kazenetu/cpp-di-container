@@ -23,15 +23,15 @@ int main()
         DIContainer::AddMap("Fuga", StubFuga::Create); //Test用Fugaを登録
 
         // インスタンス作成
-        auto hoge = DIContainer::Create<Hoge>("Hoge");
-        hoge->Method();
+        auto hoge = DIContainer::Create<Hoge>("Hoge",1);
+        //hoge->Method();
 
-        // インスタンス作成(テスト用
+        //// インスタンス作成(テスト用
         auto fuga = DIContainer::Create<Fuga>("Fuga");
-        fuga->FugaMethod();
+        //fuga->FugaMethod();
 
-        // ダウンキャストできない組み合わせでインスタンス作成
-        auto er = DIContainer::Create<Fuga>("Hoge");
+        //// ダウンキャストできない組み合わせでインスタンス作成
+        //auto er = DIContainer::Create<Fuga>("Hoge");
     }
     catch (DIContainerError error) {
         std::cout << "error:" << error.GetErrorString().c_str() << std::endl;

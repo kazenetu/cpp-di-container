@@ -28,8 +28,8 @@ public:
     /*
       インスタンスを返す
     */
-    template<class T>
-    static std::shared_ptr<T> Create(std::string name)
+    template<class T, class... Args>
+    static std::shared_ptr<T> Create(std::string name, Args... args)
     {
         // 排他制御を実施
         static std::recursive_mutex mutex_;
@@ -50,7 +50,7 @@ public:
         }
 
         // 初期化メソッドを実行
-        instance->Initialize();
+        result->Initialize(args...);
 
         // インスタンスを返す
         return result;

@@ -4,7 +4,8 @@ C++用簡易DIコンテナ
 ## コンテナに登録できるクラスの条件
 * 間接的にインターフェース「IObject」を継承していること
 * shared_ptr\<IObject\>を返すクラスメソッド「Create」を必ず作成すること
-* インスタンスメソッド「Initialize」を必ず作成すること
+* インスタンスメソッド「Initialize」を必ず作成すること  
+  **パラメータが必要の場合はパラメータ付きメソッドを用意すること***
 
 ### 実装例  
 ```cpp
@@ -13,7 +14,7 @@ C++用簡易DIコンテナ
 */
 class IFuga :public IObject
 {
-    void virtual FugaMethod()=0;
+    void virtual FugaMethod(){}
 };
 
 /*
@@ -31,9 +32,13 @@ public:
     }
  
     void Initialize() {
-        std::cout << "Initialize Fuga:" << this << std::endl;
+        std::cout << "Initialize Fuga param None" << std::endl;
     }
- 
+
+    void Initialize(int i) {
+        std::cout << "Initialize Fuga param(int) " << i << std::endl;
+    }
+
     void FugaMethod() {
         std::cout << "Fuga!" << std::endl;
     }
@@ -51,6 +56,10 @@ DIContainer::AddMap("Fuga", Fuga::Create);
 ```cpp
 // インスタンス作成
 auto fuga = DIContainer::Create<Fuga>("Fuga");
+
+// インスタンス作成(パラメータを設定する場合は第二パラメータ以降に設定)
+auto fuga = DIContainer::Create<Fuga>("Fuga", 1);
+
 ```
 ※shared_ptrが返る  
 
@@ -63,10 +72,11 @@ auto fuga = DIContainer::Create<Fuga>("Fuga");
 |インスタンス作成時 |クラス名未登録         |DIContainerError::DI_ERROR::NOT_EXITS_NAME      |
 |インスタンス作成時 |指定クラスへの変換不可  |DIContainerError::DI_ERROR::CANNOT_CONVERT_TYPE |
 
-### 例外インスタンス(DIContainerError)
+### 例外インスタンス(std::runtime_error)
 |メソッド名|戻り値|詳細|
-|:-----------------|:----------------------------|:-------------------------------------|
-|GetErrorString()  |std::string                  | エラー時の文字列を取得                 |
-|GetErrorCode()    |DIContainerError::DI_ERROR   |エラーコード取得                       |
-|GetName()         |std::string                  | クラス名取得                          |
-|GetConvertType()  |std::string                  | ダウンキャスト名を取得(インスタンス作成時のみ設定)  |
+|:-------------------|:----------------------------|:-------------------------------------|
+|error.what()        |const char*                  | エラー時の文字列を取得                 |
+|*GetErrorCode()*※  |*DIContainerError::DI_ERROR* | *エラーコード取得*                    |
+|*GetName()*※       |*std::string*                | *クラス名取得*                        |
+|*GetConvertType()*※ |*std::string*                | *ダウンキャスト名を取得(インスタンス作成時のみ設定)*|
+※DIContainerErrorにキャストすることで参照可能

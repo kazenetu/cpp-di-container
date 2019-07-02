@@ -43,6 +43,9 @@ public:
     void Initialize() {
         std::cout << "Initialize Hoge:" << this << std::endl;
     }
+    void Initialize(int i) {
+        std::cout << "Initialize Hoge:pram(int) " << i << std::endl;
+    }
 
     /*
       デストラクタ

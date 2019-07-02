@@ -37,7 +37,7 @@ public:
 
         // 存在確認
         if (diMaps.find(name) == diMaps.end()) {
-            throw std::move(std::make_unique<DIContainerError>(DIContainerError::NOT_EXITS_NAME,name, ""));
+            throw DIContainerError::Create(DIContainerError::NOT_EXITS_NAME,name, "");
         }
 
         // インスタンスを作成
@@ -46,7 +46,7 @@ public:
 
         // インスタンスチェック
         if (result == nullptr) {
-            throw DIContainerError(DIContainerError::CANNOT_CONVERT_TYPE, name, typeid(T).name());
+            throw DIContainerError::Create(DIContainerError::CANNOT_CONVERT_TYPE, name, typeid(T).name());
         }
 
         // 初期化メソッドを実行

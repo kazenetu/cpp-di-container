@@ -12,7 +12,7 @@
 /*
   簡易DIコンテナ用エラークラス
 */
-class DIContainerError
+class DIContainerError :public std::runtime_error
 {
 public:
     /*
@@ -26,47 +26,21 @@ public:
     };
 
     /*
-      コンストラクタ
+     インスタンス作成メソッド
     */
-    DIContainerError(DI_ERROR errorCode, std::string name, std::string convertType)
-        :errorCode(errorCode),name(name), convertType(convertType)
-    {
+    static DIContainerError Create(DI_ERROR errorCode, std::string name, std::string convertType) {
+        auto message = GetErrorString(errorCode, name, convertType);
+        return DIContainerError(message, errorCode, name, convertType);
     }
+
 
     /*
-      エラー時の文字列を取得
+      コンストラクタ
     */
-    std::string GetErrorString()
+    DIContainerError(const std::string&_Message, DI_ERROR errorCode, std::string name, std::string convertType)
+        :runtime_error(_Message), errorCode(errorCode), name(name), convertType(convertType)
     {
-        std::string result;
-
-        // エラーコード
-        switch (errorCode) {
-        case DIContainerError::EXITS_NAME:
-            result += STR(EXITS_NAME);
-
-        case DIContainerError::NOT_EXITS_NAME:
-            result += STR(NOT_EXITS_NAME);
-
-        case DIContainerError::CANNOT_CONVERT_TYPE:
-            result += STR(CANNOT_CONVERT_TYPE);
-
-        default:
-            result += STR(UNKNOWN_ERROR);
-
-        }
-
-        // 名称
-        result += " name[" + name + "]";
-
-        // 変換名
-        if (convertType != "") {
-            result += " convert miss[" + convertType + "]";
-        }
-
-        return result;
     }
-
 
     /*
       エラーコード取得
@@ -94,6 +68,43 @@ private:
     DI_ERROR errorCode;
     std::string name;
     std::string convertType;
+
+    /*
+      エラー時の文字列を取得
+    */
+    static std::string GetErrorString(DI_ERROR errorCode, std::string name, std::string convertType)
+    {
+        std::string result;
+
+        // エラーコード
+        switch (errorCode) {
+        case DIContainerError::EXITS_NAME:
+            result += STR(EXITS_NAME);
+            break;
+
+        case DIContainerError::NOT_EXITS_NAME:
+            result += STR(NOT_EXITS_NAME);
+            break;
+
+        case DIContainerError::CANNOT_CONVERT_TYPE:
+            result += STR(CANNOT_CONVERT_TYPE);
+            break;
+
+        default:
+            result += STR(UNKNOWN_ERROR);
+            break;
+        }
+
+        // 名称
+        result += " name[" + name + "]";
+
+        // 変換名
+        if (convertType != "") {
+            result += " convert miss[" + convertType + "]";
+        }
+
+        return result;
+    }
 };
 
 #endif //DICONTAINER_ERROR_H

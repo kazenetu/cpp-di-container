@@ -8,7 +8,6 @@
 #include "Domain/Hoge.h"
 #include "Domain/Fuga.h"
 #include "Repository/DIContainer.h"
-#include "Repository/DIContainerError.h"
 
 #include "Stub/StubFuga.h"
 
@@ -23,18 +22,18 @@ int main()
         DIContainer::AddMap("Fuga", StubFuga::Create); //Test用Fugaを登録
 
         // インスタンス作成
-        auto hoge = DIContainer::Create<Hoge>("Hoge",1);
-        //hoge->Method();
+        auto hoge = DIContainer::Create<Hoge>("Hoge",10);
+        hoge->Method();
 
-        //// インスタンス作成(テスト用
+        // インスタンス作成(テスト用
         auto fuga = DIContainer::Create<Fuga>("Fuga");
-        //fuga->FugaMethod();
+        fuga->FugaMethod();
 
-        //// ダウンキャストできない組み合わせでインスタンス作成
-        //auto er = DIContainer::Create<Fuga>("Hoge");
+        // ダウンキャストできない組み合わせでインスタンス作成
+        auto er = DIContainer::Create<Fuga>("Hoge");
     }
-    catch (DIContainerError error) {
-        std::cout << "error:" << error.GetErrorString().c_str() << std::endl;
+    catch (std::runtime_error error) {
+        std::cout << "error:" << error.what() << std::endl;
     }
     
 

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Domain">
+      <UniqueIdentifier>{b02e5a51-fdb6-44f0-86d7-6fcefc2e81eb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="Domain\Hagu.h">
+      <Filter>Domain</Filter>
+    </ClInclude>
+    <ClInclude Include="Domain\IHagu.h">
+      <Filter>Domain</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

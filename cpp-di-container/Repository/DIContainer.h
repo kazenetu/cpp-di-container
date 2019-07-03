@@ -23,7 +23,16 @@ public:
     /*
       追加
     */
-    static void Register(std::string name, std::function<std::shared_ptr<IObject>()> function);
+    static void Register(std::string name, std::function<std::shared_ptr<IObject>()> function) 
+    {
+        // 追加済み確認
+        if (container.find(name) != container.end()) {
+            throw DIContainerError::Create(DIContainerError::EXITS_NAME, name, "");
+        }
+
+        // 追加
+        container[name] = function;
+    }
 
     /*
       インスタンスを返す
@@ -63,6 +72,8 @@ private:
     static std::map<std::string, std::function<std::shared_ptr<IObject>()>> container;
 };
 
+// 実体化
+std::map<std::string, std::function<std::shared_ptr<IObject>()>> DIContainer::container{};
 
 #endif //DICONTAINER_H
 

@@ -49,7 +49,7 @@ public:
 ### **コンテナにクラス名とクラス(IObject)生成メソッドを登録**
 ```cpp
 // コンテナ登録
-DIContainer::AddMap("Fuga", Fuga::Create);
+DIContainer::Register("Fuga", Fuga::Create);
 ```
 
 ### **クラスを指定し、そのインタンスを生成・取得**
@@ -79,4 +79,5 @@ auto fuga = DIContainer::Create<Fuga>("Fuga", 1);
 |*GetErrorCode()*※  |*DIContainerError::DI_ERROR* | *エラーコード取得*                    |
 |*GetName()*※       |*std::string*                | *クラス名取得*                        |
 |*GetConvertType()*※ |*std::string*                | *ダウンキャスト名を取得(インスタンス作成時のみ設定)*|
+
 ※DIContainerErrorにキャストすることで参照可能

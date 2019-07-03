@@ -61,18 +61,6 @@ private:
       DIコンテナ情報
     */
     static std::map<std::string, std::function<std::shared_ptr<IObject>()>> container;
-
-    /*
-　　  排他制御用mutexインスタンス
-    */
-    std::recursive_mutex mutex_;
-
-    /*
-      排他制御インスタンス取得
-    */
-    std::unique_lock<std::recursive_mutex> locker(){
-        return std::unique_lock<std::recursive_mutex>(mutex_);
-    };
 };
 
 

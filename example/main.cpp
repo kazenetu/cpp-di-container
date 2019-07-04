@@ -4,6 +4,8 @@
 #include "pch.h"
 #include <iostream>
 
+#define DI_INIT
+
 #include "DIContainer.h"
 #include "Domain/Hagu.h"
 

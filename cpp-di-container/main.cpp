@@ -5,6 +5,8 @@
 #include <iostream>
 #include <memory>
 
+#define DI_INIT
+
 #include "Domain/Hoge.h"
 #include "Domain/Fuga.h"
 #include "Repository/DIContainer.h"

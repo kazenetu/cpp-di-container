@@ -72,8 +72,10 @@ private:
     static std::map<std::string, std::function<std::shared_ptr<IObject>()>> container;
 };
 
+#ifdef DI_INIT
 // 実体化
 std::map<std::string, std::function<std::shared_ptr<IObject>()>> DIContainer::container{};
+#endif
 
 #endif //DICONTAINER_H
 

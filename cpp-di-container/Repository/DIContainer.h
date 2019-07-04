@@ -65,6 +65,14 @@ public:
         return result;
     }
 
+    /*
+      クリア
+      ※テスト用
+    */
+    static void Clear() {
+        container.clear();
+    }
+
 private:
     /*
       DIコンテナ情報

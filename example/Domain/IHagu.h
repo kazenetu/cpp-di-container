@@ -6,7 +6,7 @@
 #include<memory>
 #include <iostream>
 
-#include "../Repository/IObject.h"
+#include "IObject.h"
 
 /*
   Haguクラス用インターフェースクラス

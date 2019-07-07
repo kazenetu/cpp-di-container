@@ -1,11 +1,19 @@
 # cpp-di-container
-C++用簡易DIコンテナ
+C++用簡易DIコンテナライブラリ  
+(ヘッダーオンリー)
+
+## 利用手順
+1. 本リポジトリをsubmoduleとして追加する  
+   (またはアーカイブファイルをダウンロードして展開する)
+1. includeフォルダを追加includeに追加する
+1. **DIコンテナ登録処理のソースファイルに「```#define DI_INIT```」を定義する**  
+   (DIコンテナのクラスフィールドの初期化が行われる)
 
 ## コンテナに登録できるクラスの条件
 * 間接的にインターフェース「IObject」を継承していること
 * shared_ptr\<IObject\>を返すクラスメソッド「Create」を必ず作成すること
 * インスタンスメソッド「Initialize」を必ず作成すること  
-  **パラメータが必要の場合はパラメータ付きメソッドを用意すること***
+  **パラメータが必要の場合はパラメータ付きメソッドを用意すること**
 
 ### 実装例  
 ```cpp
@@ -45,23 +53,77 @@ public:
 };
 ```
 
-## 使用方法
-### **コンテナにクラス名とクラス(IObject)生成メソッドを登録**
+## DIコンテナ使用方法(main.cpp)
 ```cpp
-// コンテナ登録
+#include <iostream>
+#include <memory>
+
+#define DI_INIT // ※1
+#include "Domain/Fuga.h"
+#include "Repository/DIContainer.h"
+
+#include "Stub/StubFuga.h"
+
+int main()
+{
+    try {
+        // コンテナ登録 ※2
+        DIContainer::AddMap("Fuga", Fuga::Create);
+
+        // インスタンス作成 ※3
+        auto fuga = DIContainer::Create<Fuga>("Fuga");
+
+        // インスタンス作成(パラメータを設定する場合は第二パラメータ以降に設定) ※3
+        auto fuga = DIContainer::Create<Fuga>("Fuga", 1);
+    }
+    catch (std::runtime_error error) {
+        std::cout << "error:" << error.what() << std::endl; // ※4
+    }
+
+    // 一時停止
+    getchar();
+}
+```
+
+### **※1 DIコンテナのクラスフィールドの初期化**
+**注意事項**
+* コンテナ登録を行うソースコードに追加すること  
+* 必ず1ファイルだけ定義すること  
+```cpp
+#define DI_INIT // ※1
+```
+
+### **※2 コンテナにクラス名とクラス(IObject)生成メソッドを登録**
+```cpp
+// コンテナ登録 ※2
 DIContainer::Register("Fuga", Fuga::Create);
 ```
 
-### **クラスを指定し、そのインタンスを生成・取得**
+### **※3 クラスを指定し、そのインタンスを生成・取得**
 ```cpp
-// インスタンス作成
+// インスタンス作成 ※3
 auto fuga = DIContainer::Create<Fuga>("Fuga");
 
-// インスタンス作成(パラメータを設定する場合は第二パラメータ以降に設定)
+// インスタンス作成(パラメータを設定する場合は第二パラメータ以降に設定) ※3
 auto fuga = DIContainer::Create<Fuga>("Fuga", 1);
-
 ```
 ※shared_ptrが返る  
+
+### **※4 例外処理**
+* std::runtime_errorでcatchすること
+```cpp
+catch (std::runtime_error error) {
+    std::cout << "error:" << error.what() << std::endl; // ※4
+}
+```
+
+### **その他**
+ユニットテスト用にDIコンテナのクリアが実装されている  
+ユニットテスト以外では使用しないこと
+```cpp
+DIContainer::Clear();
+```
+
 
 ## エラーと例外インスタンス
 

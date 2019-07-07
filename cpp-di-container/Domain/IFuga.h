@@ -13,6 +13,7 @@
 */
 class IFuga :public IObject
 {
+public:
     void virtual FugaMethod() {};
 };
 

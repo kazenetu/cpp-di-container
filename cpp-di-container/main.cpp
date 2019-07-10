@@ -20,7 +20,7 @@ int main()
     try {
         // コンテナ登録
         DIContainer::Register("Hoge", Hoge::Create);
-        //DIContainer::AddMap("Fuga", Fuga::Create);
+        //DIContainer::Register("Fuga", Fuga::Create);
         DIContainer::Register("Fuga", StubFuga::Create); //Test用Fugaを登録
 
         // インスタンス作成

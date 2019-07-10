@@ -28,7 +28,7 @@ int main()
         hoge->Method();
 
         // インスタンス作成(テスト用
-        auto fuga = DIContainer::Create<Fuga>("Fuga");
+        auto fuga = DIContainer::Create<IFuga>("Fuga");
         fuga->FugaMethod();
 
         // ダウンキャストできない組み合わせでインスタンス作成

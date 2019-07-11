@@ -51,6 +51,10 @@ public:
         std::cout << "Initialize Hoge:pram(shared_ptr<IFuga>) " <<  std::endl;
         fuga->FugaMethod();
     }
+    void Initialize(IFuga *fuga) {
+        std::cout << "Initialize Hoge:pram(IFuga) " << std::endl;
+        (*fuga).FugaMethod();
+    }
 
     /*
       デストラクタ

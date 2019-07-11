@@ -42,5 +42,8 @@
     <ClInclude Include="Repository\DIContainerError.h">
       <Filter>Repository</Filter>
     </ClInclude>
+    <ClInclude Include="Domain\ExclusionDI.h">
+      <Filter>Domain</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

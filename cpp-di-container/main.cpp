@@ -9,6 +9,7 @@
 
 #include "Domain/Hoge.h"
 #include "Domain/Fuga.h"
+#include "Domain/ExclusionDI.h"
 #include "Repository/DIContainer.h"
 
 #include "Stub/StubFuga.h"
@@ -31,9 +32,9 @@ int main()
         auto hoge2 = DIContainer::Create<Hoge>("Hoge", DIContainer::Create<IFuga>("Fuga"));
         hoge2->Method();
 
-        // インスタンス作成：パラメータにFugaインスタンス2
-        Fuga fugaInstance;
-        auto hoge3 = DIContainer::Create<Hoge>("Hoge", &fugaInstance);
+        // インスタンス作成：パラメータにExclusionDIインスタンス
+        ExclusionDI exd("text");
+        auto hoge3 = DIContainer::Create<Hoge>("Hoge", std::move(exd));
         hoge3->Method();
 
         // インスタンス作成(テスト用

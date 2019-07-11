@@ -14,9 +14,6 @@
 class Fuga :public IFuga
 {
 public:
-    Fuga() {};
-    Fuga(Fuga&&) = delete;
-
     /*
       インスタンス作成
     */

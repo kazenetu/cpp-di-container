@@ -7,6 +7,7 @@
 #include <iostream>
 
 #include "../Repository/IObject.h"
+#include "Domain/IFuga.h"
 
 /*
   IObjectインターフェースの実装クラス
@@ -45,6 +46,10 @@ public:
     }
     void Initialize(int i) {
         std::cout << "Initialize Hoge:pram(int) " << i << std::endl;
+    }
+    void Initialize(std::shared_ptr<IFuga> fuga) {
+        std::cout << "Initialize Hoge:pram(IFuga) " <<  std::endl;
+        fuga->FugaMethod();
     }
 
     /*

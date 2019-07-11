@@ -27,6 +27,10 @@ int main()
         auto hoge = DIContainer::Create<Hoge>("Hoge",10);
         hoge->Method();
 
+        // インスタンス作成：パラメータにFugaインスタンス
+        auto hoge2 = DIContainer::Create<Hoge>("Hoge", DIContainer::Create<IFuga>("Fuga"));
+        hoge2->Method();
+
         // インスタンス作成(テスト用
         auto fuga = DIContainer::Create<IFuga>("Fuga");
         fuga->FugaMethod();

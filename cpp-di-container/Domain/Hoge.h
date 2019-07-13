@@ -38,7 +38,7 @@ public:
     /*
       コンストラクタ
     */
-    Hoge() :str("aaaa") {
+    Hoge() :str("aaaa"), exd_("a"){
         std::cout << "create Hoge:" << this << str.c_str() << std::endl;
     }
 
@@ -54,7 +54,8 @@ public:
     }
     void Initialize(ExclusionDI &exd) {
         std::cout << "Initialize Hoge:pram(ExclusionDI) " << std::endl;
-        exd.DisplayName();
+        exd_ = exd;
+        exd_.DisplayName();
     }
 
     /*
@@ -70,6 +71,7 @@ private:
       動作確認用フィールド
     */
     std::string str;
+    ExclusionDI exd_;
 };
 
 #endif //HOGE_H

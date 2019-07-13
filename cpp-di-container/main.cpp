@@ -51,7 +51,7 @@ int main()
         std::cout << std::endl;
         std::cout << "---[IContainer::Create Hoge(vector<int>)]---" << std::endl;
 
-        // インスタンス作成：パラメータにlist<int>インスタンス
+        // インスタンス作成：パラメータにlist<int>インスタンス 左辺値参照
         std::vector<int> vec{ 1,2,3 };
         //auto hoge4 = DIContainer::Create<Hoge>("Hoge", std::move(vec)); // Compile Error
         auto hoge4 = DIContainer::Create<Hoge>("Hoge");

@@ -67,9 +67,11 @@ public:
     void DisplayIntList(std::vector<int>&& vec)
     {
         std::cout << "DisplayIntList Hoge:pram(std::vector<int>) " << std::endl;
+        vec_ = vec;
+
         std::cout << "std::vector<int> is [";
-        for (int i = 0; i < vec.size(); ++i) {
-            std::cout << vec[i] << ",";
+        for (int i = 0; i < vec_.size(); ++i) {
+            std::cout << vec_[i] << ",";
         }
         std::cout << "]" << std::endl;
     }
@@ -90,6 +92,7 @@ private:
     */
     std::string str;
     ExclusionDI exd_;
+    std::vector<int> vec_;
 };
 
 #endif //HOGE_H

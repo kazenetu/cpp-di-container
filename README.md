@@ -50,6 +50,19 @@ public:
     void FugaMethod() {
         std::cout << "Fuga!" << std::endl;
     }
+
+    /*Method whose argument is vector*/
+    void DisplayIntList(std::vector<int>&& vec)
+    {
+        std::cout << "DisplayIntList Fuga:pram(std::vector<int>) " << std::endl;
+        vec_ = vec;
+
+        std::cout << "std::vector<int> is [";
+        for (int i = 0; i < vec_.size(); ++i) {
+            std::cout << vec_[i] << ",";
+        }
+        std::cout << "]" << std::endl;
+    }
 };
 ```
 
@@ -74,7 +87,14 @@ int main()
         auto fuga = DIContainer::Create<Fuga>("Fuga");
 
         // インスタンス作成(パラメータを設定する場合は第二パラメータ以降に設定) ※3
-        auto fuga = DIContainer::Create<Fuga>("Fuga", 1);
+        auto fuga2 = DIContainer::Create<Fuga>("Fuga", 1);
+
+        // インスタンス作成(右辺値参照) ※3
+        std::vector<int> vec{ 1,2,3 };
+        auto fuga3 = DIContainer::Create<Fuga>("Fuga");
+        // templateなどが含まれる場合は別途設定メソッドを呼び出す
+        fuga3->DisplayIntList(std::move(vec)); 
+
     }
     catch (std::runtime_error error) {
         std::cout << "error:" << error.what() << std::endl; // ※4
@@ -108,6 +128,15 @@ auto fuga = DIContainer::Create<Fuga>("Fuga");
 auto fuga = DIContainer::Create<Fuga>("Fuga", 1);
 ```
 ※shared_ptrが返る  
+
+右辺値参照の場合は別途専用メソッドを呼び出す  
+```cpp
+// インスタンス作成(右辺値参照) ※3
+std::vector<int> vec{ 1,2,3 };
+auto fuga3 = DIContainer::Create<Fuga>("Fuga");
+// 別途専用メソッドを呼び出す
+fuga3->DisplayIntList(std::move(vec)); 
+```
 
 ### **※4 例外処理**
 * std::runtime_errorでcatchすること

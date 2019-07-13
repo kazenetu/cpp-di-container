@@ -49,6 +49,16 @@ int main()
         hoge3->Method();
 
         std::cout << std::endl;
+        std::cout << "---[IContainer::Create Hoge(vector<int>)]---" << std::endl;
+
+        // インスタンス作成：パラメータにlist<int>インスタンス
+        std::vector<int> vec{ 1,2,3 };
+        //auto hoge4 = DIContainer::Create<Hoge>("Hoge", std::move(vec)); // Compile Error
+        auto hoge4 = DIContainer::Create<Hoge>("Hoge");
+        hoge4->DisplayIntList(std::move(vec)); // Need to call another method
+        hoge4->Method();
+
+        std::cout << std::endl;
         std::cout << "---[IContainer::Create IFuga]---" << std::endl;
 
         // インスタンス作成(テスト用

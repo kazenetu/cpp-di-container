@@ -5,6 +5,7 @@
 
 #include<memory>
 #include <iostream>
+#include <vector>
 
 #include "../Repository/IObject.h"
 #include "Domain/IFuga.h"
@@ -57,6 +58,23 @@ public:
         exd_ = exd;
         exd_.DisplayName();
     }
+    void Initialize(std::vector<int>&& vec) {
+        // Initialization method is not used
+        std::cout << "Initialize Hoge:pram(std::vector<int>) " << std::endl;
+    }
+
+    /*Method whose argument is vector*/
+    void DisplayIntList(std::vector<int>&& vec)
+    {
+        std::cout << "DisplayIntList Hoge:pram(std::vector<int>) " << std::endl;
+        std::cout << "std::vector<int> is [";
+        for (int i = 0; i < vec.size(); ++i) {
+            std::cout << vec[i] << ",";
+        }
+        std::cout << "]" << std::endl;
+    }
+
+
 
     /*
       デストラクタ

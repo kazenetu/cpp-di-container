@@ -14,6 +14,9 @@
 */
 class IHagu :public IObject
 {
+public:
+    void virtual Initialize() {};
+    void virtual Initialize(std::string paramString) {};
     void virtual HaguMethod() {};
     void virtual SetParams(std::vector<int>&&) {};
 };

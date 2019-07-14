@@ -29,6 +29,17 @@ public:
     void Initialize(std::string paramString) {
         std::cout << "Param String:" << paramString.c_str() << std::endl;
     }
+    void Initialize(std::vector<int>&& vec) {
+        std::cout << "Param pram(std::vector<int>):";
+        std::cout << "[";
+        for (int i = 0; i < vec.size(); ++i) {
+            std::cout << vec[i] << ",";
+        }
+        std::cout << "]" << std::endl;
+    }
+    void SetParams(std::vector<int>&& vec) {
+        Initialize(std::move(vec));
+    }
 
     void HaguMethod() {
         std::cout << "Hagu!" << std::endl;

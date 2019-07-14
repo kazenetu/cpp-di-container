@@ -3,8 +3,9 @@
 #ifndef IHAGU_H
 #define IHAGU_H
 
-#include<memory>
+#include <memory>
 #include <iostream>
+#include <vector>
 
 #include "IObject.h"
 
@@ -14,6 +15,7 @@
 class IHagu :public IObject
 {
     void virtual HaguMethod() {};
+    void virtual SetParams(std::vector<int>&&) {};
 };
 
 #endif //IHAGU_H

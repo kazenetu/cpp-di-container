@@ -20,17 +20,17 @@ int main()
         DIContainer::Register("Hagu", Hagu::Create);
 
         // インスタンス作成(パラメータなし)
-        auto hagu = DIContainer::Create<Hagu>("Hagu");
+        auto hagu = DIContainer::Create<IHagu>("Hagu");
         hagu->HaguMethod();
 
         // インスタンス作成(パラメータあり)
-        auto hagu2 = DIContainer::Create<Hagu>("Hagu", "paramABC");
+        auto hagu2 = DIContainer::Create<IHagu>("Hagu", "paramABC");
         hagu2->HaguMethod();
 
         // インスタンス作成：パラメータにlist<int>インスタンス 左辺値参照
         std::vector<int> vec{ 1,2,3 };
         //auto hagu3 = DIContainer::Create<Hagu>("Hagu", std::move(vec)); // Compile Error
-        auto hagu3 = DIContainer::Create<Hagu>("Hagu");
+        auto hagu3 = DIContainer::Create<IHagu>("Hagu");
         hagu3->SetParams(std::move(vec));
     }
     catch (std::runtime_error error) {
